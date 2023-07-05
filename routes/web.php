@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RolesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +41,5 @@ Route::get('/connexion', function () {
 Route::get('/inscription', function () {
     return view('Layout/Pages/inscription');
 });
+
+Route::get('/admin',[RolesController::class, 'role']  );
