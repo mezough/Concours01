@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RolesController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,4 +43,8 @@ Route::get('/inscription', function () {
     return view('Layout/Pages/inscription');
 });
 
-Route::get('/admin',[RolesController::class, 'role']  );
+Route::get('/admin',[RolesController::class, 'connexion']);
+Route::post('/inscription',[UserController::class, 'insertUser'])->name('user.data');
+
+Route::get('/admin/role',[RolesController::class, 'roleView']);
+Route::post('/role',[RolesController::class, 'addRole'])->name('add.role');
