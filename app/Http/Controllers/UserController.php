@@ -1,15 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Symfony\Contracts\Service\Attribute\Required;
 use Illuminate\Support\Facades\DB;
-
 use App\Models\User;
 
 class UserController extends Controller
 {
+    public function index(){
+$users = User::all();
+        return view('Layout.Pages.profile-ad', ['users'=>$users]);
+    }
+
     public function insertUser(Request $request)
     {
         // return $request->input();
@@ -25,7 +28,6 @@ class UserController extends Controller
         
 
         $query = DB::table('users')->insert([
-            // 'id_Role' => $request->input('id_Role'),
             'img_profile' => $request->input('img_profile'), 
             'fname' => $request->input('fname'),
             'email' => $request->input('email'),

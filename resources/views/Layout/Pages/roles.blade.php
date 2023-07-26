@@ -2,7 +2,7 @@
 @section('title', 'Roles')
 
 @section('style')
-
+<link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 @endsection
 
 @section('content')
@@ -10,7 +10,7 @@
         <div class="container mt-3">
             <h3>Roles</h3>
 
-@if (Session::get('success'))
+{{-- @if (Session::get('success'))
 <div class="alert alert-success ">
     {{Session::get('success')}}
 </div>   
@@ -19,7 +19,7 @@
 <div class="alert alert-danger ">
     {{Session::get('failed')}}
 </div>   
-@endif            
+@endif             --}}
 
 <form method="POST" action="{{ route('add.role') }}" class="was-validated text-secondary">
                 @csrf

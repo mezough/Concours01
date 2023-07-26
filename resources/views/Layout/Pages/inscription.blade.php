@@ -13,7 +13,7 @@
 
             <form method="POST" action="{{route('user.data')}}" class="was-validated text-secondary">
                 @csrf
-                @method('POST')
+                {{-- @method('POST') --}}
                 <div class="mb-3 mt-3">
                     <label for="fname" class="form-label">Full Name:</label>
                     <input type="text" class="form-control" id="fname" placeholder="Enter Full Name" name="fname"

@@ -11,7 +11,7 @@ use GuzzleHttp\Psr7\Query;
 class RolesController extends Controller
 {
     public function connexion(){
-        return view('Layout.Pages.connexion');
+        return view('views.dashboard');
     }
 
     public function roleView(){
