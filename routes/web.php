@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RolesController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\ViewControllers;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,33 +19,22 @@ use App\Http\Controllers\UserController;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/home', [ViewControllers::class,'home']);
+Route::get('/concours', [ViewControllers::class,'concours']);
+Route::get('/profiles', [ViewControllers::class,'profiles']);
+Route::get('/connexion', [ViewControllers::class,'connexion']);
+Route::get('/inscription', [ViewControllers::class,'inscription'])->name('user.data');
 
-Route::get('/home', function () {
-    return view('Layout/Pages/home');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/admin', [RolesController::class,'dashboard']);
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/concours', function () {
-    return view('Layout/Pages/concours');
-});
-
-Route::get('/profiles', function () {
-    return view('Layout/Pages/profiles');
-});
-
-Route::get('/profile', function () {
-    return view('Layout/Pages/profile-ad');
-});
-
-Route::get('/connexion', function () {
-    return view('Layout/Pages/connexion');
-});
-
-Route::get('/inscription', function () {
-    return view('Layout/Pages/inscription');
-});
-
-Route::get('/admin',[RolesController::class, 'connexion']);
-Route::post('/inscription',[UserController::class, 'insertUser'])->name('user.data');
-
-Route::get('/admin/role',[RolesController::class, 'roleView']);
-Route::post('/role',[RolesController::class, 'addRole'])->name('add.role');
+require __DIR__.'/auth.php';

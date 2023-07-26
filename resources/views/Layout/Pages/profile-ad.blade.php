@@ -103,7 +103,10 @@
             <div class="content-test">
                 <div class="text-1 active" id="test-profile">
                     <h2>Profile</h2>
-                    <p>Lorem ipsum dolor sit</p>
+                    @foreach ($users as $user)
+                        <p> {{$user->fname}} </p>
+                        <p> {{$user->email}} </p>
+                    @endforeach
                 </div>
 
                 <div class="text-2" id="test-concours">
